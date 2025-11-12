@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🏛️ ಕರ್ನಾಟಕ ಪಾರಂಪರ್ಯ ಚಾಟ್‌ಬಾಟ್</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="main-container">
+    
+    <!-- 📜 Sidebar -->
+    <div class="sidebar">
+      <h2>💬 ಹಿಂದಿನ ಚಾಟ್‌ಗಳು</h2>
+      <div id="chat-history" class="chat-history"></div>
+
+      <div class="sidebar-buttons">
+        <button id="clearHistoryBtn" class="clear-history-btn">🗑️ ಚಾಟ್ ಇತಿಹಾಸ ಅಳಿಸಿ</button>
+        <button id="newChatBtn" class="new-chat-btn">🆕 ಹೊಸ ಚಾಟ್</button>
+      </div>
+    </div>
+
+    <!-- 💬 Chat Section -->
+    <div class="chat-container">
+      <h1>🏛️ ಕರ್ನಾಟಕ ಪಾರಂಪರ್ಯ ಚಾಟ್‌ಬಾಟ್</h1>
+
+      <!-- Chat Messages -->
+      <div id="chat-box" class="chat-box"></div>
+
+      <!-- Input Section -->
+      <div class="input-area">
+        <textarea id="query" placeholder="ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಇಲ್ಲಿ ಬರೆಯಿರಿ..."></textarea>
+
+        <button id="askBtn" class="ask-btn">🔍 ಪ್ರಶ್ನೆ ಕೇಳಿ</button>
+        <button id="speakBtn" class="speak-btn hidden">🔊 ಉತ್ತರ ಕೇಳಿ</button>
+        <button id="toggleKeyboardBtn" class="keyboard-toggle">⌨️ ಕನ್ನಡ ಕೀಬೋರ್ಡ್</button>
+      </div>
+
+      <!-- Kannada Keyboard -->
+      <div id="kannada-keyboard" class="keyboard hidden"></div>
+    </div>
+  </div>
+
+  <script src="keyboard.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

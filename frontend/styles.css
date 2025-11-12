@@ -1,0 +1,237 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Noto Sans Kannada', sans-serif;
+  background: linear-gradient(135deg, #eef2ff, #e3f2fd);
+  height: 100vh;
+  display: flex;
+}
+
+.main-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: #f5f7ff;
+  padding: 20px;
+  border-right: 2px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar h2 {
+  color: #283593;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.chat-history {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.chat-history-btn {
+  background: #e0e7ff;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 15px;
+  transition: all 0.2s;
+}
+.chat-history-btn:hover {
+  background: #c5cae9;
+}
+
+.sidebar-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.new-chat-btn {
+  background: #3f74b5;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.new-chat-btn:hover {
+  background: #1e3f73;
+}
+
+.clear-history-btn {
+  background-color: #ff7043;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.clear-history-btn:hover {
+  background-color: #ff5722;
+}
+
+/* Chat Section */
+.chat-container {
+  flex: 1;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+h1 {
+  text-align: center;
+  color: #283593;
+  background: #f1f3ff;
+  padding: 15px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+/* Chat Box */
+.chat-box {
+  flex: 1;
+  background: #fafbff;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.message {
+  padding: 10px 15px;
+  border-radius: 12px;
+  max-width: 75%;
+  line-height: 1.5;
+}
+
+.message.user {
+  background: #d1e7ff;
+  align-self: flex-end;
+}
+
+.message.bot {
+  background: #eef1ff;
+  align-self: flex-start;
+}
+
+.message.thinking {
+  opacity: 0.7;
+  font-style: italic;
+}
+
+/* Input Area */
+.input-area {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #f7f9ff;
+  padding: 15px;
+  border-top: 2px solid #e0e0e0;
+}
+
+textarea {
+  width: 100%;
+  min-height: 80px;
+  font-size: 17px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 10px 14px;
+  resize: none;
+  outline: none;
+}
+textarea:focus {
+  border-color: #3949ab;
+}
+
+/* Buttons */
+.ask-btn,
+.speak-btn,
+.keyboard-toggle {
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 17px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+  font-weight: 500;
+}
+
+/* Ask */
+.ask-btn {
+  background-color: #3f74b5;
+}
+.ask-btn:hover {
+  background-color: #1e3f73;
+}
+
+/* Speak */
+.speak-btn {
+  background-color: #8e24aa;
+}
+.speak-btn:hover {
+  background-color: #6a1b9a;
+}
+.speak-btn.hidden {
+  display: none;
+}
+
+/* Keyboard */
+.keyboard-toggle {
+  background-color: #009688;
+}
+.keyboard-toggle:hover {
+  background-color: #26a69a;
+}
+
+/* Kannada Keyboard */
+.keyboard {
+  margin-top: 5px;
+  background: #f1f3ff;
+  border-radius: 10px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+  gap: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  transition: max-height 0.3s ease;
+}
+.hidden {
+  display: none;
+}
+
+.key {
+  background-color: #e0e0e0;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: all 0.2s;
+}
+.key:hover {
+  background-color: #c5cae9;
+  transform: scale(1.05);
+}
