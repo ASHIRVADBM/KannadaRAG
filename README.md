@@ -240,8 +240,6 @@ Released under the MIT License. See [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-**Built by [Ashirvad B M](https://github.com/ASHIRVADBM)**
-
 *ಕನ್ನಡ ನಾಡಿನ ಪರಂಪರೆಗಾಗಿ* — for the heritage of the Kannada land
 
 ⭐ Star this repository if you find it useful
