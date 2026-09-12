@@ -1,0 +1,75 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kannada-rag"
+version = "2.0.0"
+description = "Kannada-centric retrieval-augmented generation over Karnataka heritage documents"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Ashirvad B M" },
+    { name = "Raghudathesh G P" },
+    { name = "Suhas Nayak M" },
+    { name = "Dhanalakshmi D" },
+    { name = "Prathviraj N" },
+]
+keywords = ["rag", "kannada", "low-resource-nlp", "cultural-heritage", "question-answering"]
+classifiers = [
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Natural Language :: Kannada",
+    "License :: OSI Approved :: MIT License",
+]
+
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "faiss-cpu>=1.7.4",
+    "sentence-transformers>=2.3.0",
+    "PyMuPDF>=1.23",
+    "pytesseract>=0.3.10",
+    "Pillow>=10.0",
+    "regex>=2023.10.3",
+    "requests>=2.31",
+    "fastapi>=0.109",
+    "uvicorn[standard]>=0.27",
+    "pydantic>=2.5",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+eval = ["bert-score>=0.3.13", "torch>=2.0", "transformers>=4.36"]
+hosted = ["groq>=0.4"]
+dev = ["pytest>=7.4", "pytest-cov>=4.1", "ruff>=0.2", "mypy>=1.8"]
+all = ["kannada-rag[eval,hosted,dev]"]
+
+[project.scripts]
+kannada-rag = "kannada_rag.cli:main"
+
+[project.urls]
+Repository = "https://github.com/ASHIRVADBM/KannadaRAG"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q --strict-markers"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true

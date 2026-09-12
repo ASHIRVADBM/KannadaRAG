@@ -1,0 +1,55 @@
+{
+  "chunk": {
+    "chunk_overlap": 50,
+    "chunk_size": 500,
+    "separators": [
+      "\n\n",
+      "\n",
+      "॥",
+      "।",
+      ". ",
+      " ",
+      ""
+    ]
+  },
+  "data_dir": "/home/claude/KannadaRAG/data",
+  "embedding": {
+    "batch_size": 32,
+    "device": null,
+    "model_name": "sentence-transformers/paraphrase-multilingual-mpnet-base-v2",
+    "normalise_embeddings": true,
+    "revision": null
+  },
+  "generation": {
+    "max_tokens": 150,
+    "model": "gemma3:4b",
+    "num_repeats": 3,
+    "ollama_host": "http://localhost:11434",
+    "provider": "ollama",
+    "seed": 0,
+    "temperature": 0.3,
+    "timeout_s": 180.0,
+    "top_p": 1.0
+  },
+  "index_dir": "/home/claude/KannadaRAG/vector_store",
+  "ingest": {
+    "keep_ocr_only_if_longer": true,
+    "normalise_unicode": true,
+    "ocr_char_threshold": 50,
+    "ocr_dpi": 200,
+    "tesseract_lang": "kan",
+    "tesseract_psm": 3,
+    "unicode_form": "NFC"
+  },
+  "random_seed": 20240101,
+  "results_dir": "/home/claude/KannadaRAG/results",
+  "retrieval": {
+    "abstain_when_empty": true,
+    "index_type": "flat_ip",
+    "k_max": 5,
+    "k_min": 1,
+    "relative_floor": 0.85,
+    "sim_threshold": 0.55
+  },
+  "use_retrieval": true
+}

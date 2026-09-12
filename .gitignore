@@ -1,0 +1,38 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+*.key
+credentials.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Model and index artefacts (rebuild with `make index`)
+vector_store/**/faiss.index
+vector_store/**/embeddings.npy
+vector_store/sweep_*/
+vector_store/embed_*/
+*.gguf
+
+# Experiment outputs (regenerate with `make evaluate && make tables`)
+results/
+!results/.gitkeep
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

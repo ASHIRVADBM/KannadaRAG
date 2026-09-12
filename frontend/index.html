@@ -1,47 +1,131 @@
 <!DOCTYPE html>
-<html lang="kn">
+<html lang="kn" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🏛️ ಕರ್ನಾಟಕ ಪಾರಂಪರ್ಯ ಚಾಟ್‌ಬಾಟ್</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ಕರ್ನಾಟಕ ಪಾರಂಪರಿಕ ಪ್ರಶ್ನೋತ್ತರ · Karnataka Heritage QA</title>
+<meta name="description" content="Retrieval-augmented question answering over Karnataka heritage documents, in Kannada.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="main-container">
-    
-    <!-- 📜 Sidebar -->
-    <div class="sidebar">
-      <h2>💬 ಹಿಂದಿನ ಚಾಟ್‌ಗಳು</h2>
-      <div id="chat-history" class="chat-history"></div>
 
-      <div class="sidebar-buttons">
-        <button id="clearHistoryBtn" class="clear-history-btn">🗑️ ಚಾಟ್ ಇತಿಹಾಸ ಅಳಿಸಿ</button>
-        <button id="newChatBtn" class="new-chat-btn">🆕 ಹೊಸ ಚಾಟ್</button>
+<a class="skip-link" href="#composer">ಮುಖ್ಯ ವಿಷಯಕ್ಕೆ ಹೋಗಿ</a>
+
+<div class="app">
+
+  <!-- ───────────────────────────── sidebar ───────────────────────────── -->
+  <aside class="sidebar" id="sidebar" aria-label="ಸಂಭಾಷಣೆಗಳು">
+    <header class="sidebar__head">
+      <div class="brand">
+        <span class="brand__mark" aria-hidden="true">ಕ</span>
+        <span class="brand__text">
+          <strong>ಪಾರಂಪರಿಕ ಪ್ರಶ್ನೋತ್ತರ</strong>
+          <small>Karnataka Heritage QA</small>
+        </span>
       </div>
+      <button class="icon-btn sidebar__close" id="closeSidebar" aria-label="ಮುಚ್ಚಿ">✕</button>
+    </header>
+
+    <button class="btn btn--primary btn--block" id="newChat">
+      <span aria-hidden="true">＋</span> ಹೊಸ ಸಂಭಾಷಣೆ
+    </button>
+
+    <nav class="history" id="history" aria-label="ಹಿಂದಿನ ಪ್ರಶ್ನೆಗಳು"></nav>
+
+    <footer class="sidebar__foot">
+      <div class="status" id="status" role="status" aria-live="polite">
+        <span class="status__dot" data-state="connecting"></span>
+        <span class="status__text">ಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ…</span>
+      </div>
+      <dl class="meta" id="systemMeta"></dl>
+      <div class="sidebar__actions">
+        <button class="btn btn--ghost btn--sm" id="clearHistory">ಇತಿಹಾಸ ಅಳಿಸಿ</button>
+        <button class="icon-btn" id="themeToggle" aria-label="ಬಣ್ಣ ಬದಲಾಯಿಸಿ" title="Theme">◐</button>
+      </div>
+    </footer>
+  </aside>
+
+  <!-- ────────────────────────────── main ─────────────────────────────── -->
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn topbar__menu" id="openSidebar" aria-label="ಮೆನು">☰</button>
+      <h1 class="topbar__title">ಕರ್ನಾಟಕ ಪಾರಂಪರಿಕ ಪ್ರಶ್ನೋತ್ತರ</h1>
+      <span class="badge" id="modelBadge" title="Active model">—</span>
+    </header>
+
+    <div class="thread" id="thread" role="log" aria-live="polite" aria-label="ಸಂಭಾಷಣೆ">
+
+      <section class="welcome" id="welcome">
+        <h2 class="welcome__title">ಕರ್ನಾಟಕದ ಪರಂಪರೆಯ ಬಗ್ಗೆ ಕನ್ನಡದಲ್ಲಿ ಕೇಳಿ</h2>
+        <p class="welcome__lede">
+          ಪ್ರತಿ ಉತ್ತರವೂ ಸಂಗ್ರಹದಲ್ಲಿರುವ ದಾಖಲೆಗಳ ಆಧಾರದ ಮೇಲೆ ಮಾತ್ರ ರೂಪುಗೊಳ್ಳುತ್ತದೆ,
+          ಮತ್ತು ಅದರ ಮೂಲ ಪುಟದ ಉಲ್ಲೇಖದೊಂದಿಗೆ ನೀಡಲಾಗುತ್ತದೆ.
+          ದಾಖಲೆಯಲ್ಲಿ ಮಾಹಿತಿ ಇಲ್ಲದಿದ್ದರೆ ವ್ಯವಸ್ಥೆ ಊಹಿಸುವುದಿಲ್ಲ — ಇಲ್ಲವೆಂದೇ ಹೇಳುತ್ತದೆ.
+        </p>
+
+        <div class="samples" id="samples">
+          <button class="sample" data-q="ಹಂಪಿಯ ಐತಿಹಾಸಿಕ ಮಹತ್ವವೇನು?">
+            <span class="sample__tier" data-tier="easy">ಸರಳ</span>
+            ಹಂಪಿಯ ಐತಿಹಾಸಿಕ ಮಹತ್ವವೇನು?
+          </button>
+          <button class="sample" data-q="ಐಹೊಳೆಯನ್ನು ದೇವಾಲಯಗಳ ತೊಟ್ಟಿಲು ಎಂದು ಏಕೆ ಕರೆಯುತ್ತಾರೆ?">
+            <span class="sample__tier" data-tier="medium">ಮಧ್ಯಮ</span>
+            ಐಹೊಳೆಯನ್ನು ದೇವಾಲಯಗಳ ತೊಟ್ಟಿಲು ಎಂದು ಏಕೆ ಕರೆಯುತ್ತಾರೆ?
+          </button>
+          <button class="sample" data-q="ಚಾಲುಕ್ಯ, ಹೊಯ್ಸಳ ಮತ್ತು ವಿಜಯನಗರ ವಾಸ್ತುಶಿಲ್ಪಗಳ ನಡುವಿನ ವ್ಯತ್ಯಾಸವೇನು?">
+            <span class="sample__tier" data-tier="hard">ಕಠಿಣ</span>
+            ಚಾಲುಕ್ಯ, ಹೊಯ್ಸಳ ಮತ್ತು ವಿಜಯನಗರ ವಾಸ್ತುಶಿಲ್ಪಗಳ ನಡುವಿನ ವ್ಯತ್ಯಾಸವೇನು?
+          </button>
+        </div>
+      </section>
+
     </div>
 
-    <!-- 💬 Chat Section -->
-    <div class="chat-container">
-      <h1>🏛️ ಕರ್ನಾಟಕ ಪಾರಂಪರ್ಯ ಚಾಟ್‌ಬಾಟ್</h1>
+    <!-- ──────────────────────────── composer ─────────────────────────── -->
+    <div class="composer" id="composer">
+      <div class="composer__box">
+        <label class="sr-only" for="query">ನಿಮ್ಮ ಪ್ರಶ್ನೆ</label>
+        <textarea id="query" rows="1" placeholder="ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಕನ್ನಡದಲ್ಲಿ ಬರೆಯಿರಿ…" autocomplete="off"></textarea>
 
-      <!-- Chat Messages -->
-      <div id="chat-box" class="chat-box"></div>
-
-      <!-- Input Section -->
-      <div class="input-area">
-        <textarea id="query" placeholder="ನಿಮ್ಮ ಪ್ರಶ್ನೆಯನ್ನು ಇಲ್ಲಿ ಬರೆಯಿರಿ..."></textarea>
-
-        <button id="askBtn" class="ask-btn">🔍 ಪ್ರಶ್ನೆ ಕೇಳಿ</button>
-        <button id="speakBtn" class="speak-btn hidden">🔊 ಉತ್ತರ ಕೇಳಿ</button>
-        <button id="toggleKeyboardBtn" class="keyboard-toggle">⌨️ ಕನ್ನಡ ಕೀಬೋರ್ಡ್</button>
+        <div class="composer__tools">
+          <button class="icon-btn" id="toggleKeyboard" aria-label="ಕನ್ನಡ ಕೀಬೋರ್ಡ್" aria-pressed="false" title="ಕನ್ನಡ ಕೀಬೋರ್ಡ್">⌨</button>
+          <button class="btn btn--primary btn--send" id="send">
+            <span class="btn__label">ಕೇಳಿ</span>
+            <span class="spinner" aria-hidden="true"></span>
+          </button>
+        </div>
       </div>
 
-      <!-- Kannada Keyboard -->
-      <div id="kannada-keyboard" class="keyboard hidden"></div>
-    </div>
-  </div>
+      <div class="composer__hint">
+        <span class="lang-meter" id="langMeter" hidden>
+          <span class="lang-meter__bar"><i id="langFill"></i></span>
+          <span id="langText">ಕನ್ನಡ ಅಕ್ಷರಗಳ ಪ್ರಮಾಣ</span>
+        </span>
+        <span class="composer__note">Enter ಒತ್ತಿ ಕಳುಹಿಸಿ · Shift+Enter ಹೊಸ ಸಾಲು</span>
+      </div>
 
-  <script src="keyboard.js"></script>
-  <script src="app.js"></script>
+      <div class="keyboard" id="keyboard" hidden></div>
+    </div>
+  </main>
+</div>
+
+<div class="scrim" id="scrim" hidden></div>
+
+<template id="tpl-message">
+  <article class="msg">
+    <div class="msg__avatar" aria-hidden="true"></div>
+    <div class="msg__body">
+      <div class="msg__text"></div>
+      <div class="msg__sources"></div>
+      <div class="msg__foot"></div>
+    </div>
+  </article>
+</template>
+
+<script src="keyboard.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
